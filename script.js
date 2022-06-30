@@ -6,6 +6,7 @@ const inputTitle = document.querySelector(".plan_title_input");
 // Buttons
 const addButton = document.querySelector(".btn_add");
 const saveButton = document.querySelector(".btn_save");
+const deleteButton = document.querySelector(".btn_delete");
 
 class App {
   // Private class properties
@@ -29,9 +30,11 @@ class App {
     containerPlans.addEventListener("click", this._moveToPopup.bind(this));
     addButton.addEventListener("click", this._showForm.bind(this));
     saveButton.addEventListener("click", this._saveCurrentPlan.bind(this));
+    deleteButton.addEventListener("click", this.reset.bind(this));
   }
 
   _getPosition() {
+    // Gets the user's position using the in-browser golocation. If the navigation is not enabled, the function will throw an error
     if (navigator.geolocation)
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
@@ -44,6 +47,7 @@ class App {
   }
 
   _loadMap(position) {
+    // Loads the map in the position specified.
     const { latitude } = position.coords;
     const { longitude } = position.coords;
 
@@ -69,6 +73,7 @@ class App {
   }
 
   _showForm(e) {
+    // Shows the form for inputting the title for the current plan
     e.preventDefault();
     this.#currentCoords = [];
     this.#latlngs = [];
@@ -78,12 +83,13 @@ class App {
   }
 
   _hideForm() {
-    // Empty inputs
+    // Hides the form for the plan
     inputTitle.value = "";
     form.classList.add("hidden");
   }
 
   _newPoint(mapE) {
+    // Inserts a new marker on the map
     const { lat, lng } = mapE.latlng;
     let point;
 
@@ -93,9 +99,10 @@ class App {
 
     point = [lat, lng];
 
-    // Add new object to workout array
+    // Add new object to coordinates array
     this.#currentCoords.push(point);
 
+    // Renders the marker for the current point and the polylines between points
     this._renderPlanMarker(point);
     this._renderPolyline(point);
   }
@@ -122,6 +129,7 @@ class App {
   }
 
   _renderPolyline(point) {
+    // Displays the polylines between points
     this.#latlngs.push(point);
     let polyline = L.polyline(this.#latlngs, { color: "red" });
     polyline.addTo(this.#map);
@@ -130,6 +138,7 @@ class App {
   }
 
   _renderPlanInSidebar(plan) {
+    // Renders the form in the sidebar
     let html = `<div id=${plan.id} class="flight_plan">
     ${plan.title}
   </div>`;
@@ -138,7 +147,9 @@ class App {
   }
 
   _moveToPopup(e) {
+    // Move the view on the first point of the plan and removes the other renders of points and polylines
     const planEl = e.target.closest(".flight_plan");
+
     // Guard clause for no plan clicked
     if (!planEl) return;
 
@@ -155,7 +166,6 @@ class App {
     });
 
     this._removeRenderedPlan();
-;
     plan.plan.forEach((p) => {
       this._renderPlanMarker(p);
       this._renderPolyline(p);
@@ -163,12 +173,14 @@ class App {
   }
 
   _removeRenderedPlan() {
+    // Removes the present points and polylines
     this.#currentLayer.forEach((p) => p.remove());
     this.#polylines.forEach((l) => l.remove());
     this.#latlngs = [];
   }
 
   _saveCurrentPlan() {
+    // saves the current plan
     const title = inputTitle.value;
 
     if (!title) return alert("Please input a name for the plan before saving!");
@@ -180,18 +192,18 @@ class App {
     };
     this.#plans.push(plan);
 
-    // Set local storage to all plans
     this._setLocalStorage();
-
     this._hideForm();
     this._renderPlanInSidebar(plan);
   }
 
   _setLocalStorage() {
+    // Adds the plans to the local storage
     localStorage.setItem("plans", JSON.stringify(this.#plans));
   }
 
   _getLocalStorage() {
+    // Get the data from the local storage
     const data = JSON.parse(localStorage.getItem("plans"));
 
     if (!data) return;
@@ -203,7 +215,9 @@ class App {
     });
   }
 
-  reset() {
+  reset(e) {
+    // Resets all the plans
+    e.preventDefault();
     localStorage.removeItem("plans");
     location.reload();
   }
