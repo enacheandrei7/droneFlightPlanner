@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drone Flight Planner</title>
+    <link rel="shortcut icon" type="image/png" href="/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Leaflet with links -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""
+    />
+    <script
+      defer
+      src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""
+    ></script>
+
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <!-- Sidebar content -->
+    <aside class="sidebar">
+      <div class="title_logo">
+        <img src="logo.png" alt="Logo" class="logo" />
+        <h3 class="title">Drone Flight Planner</h3>
+      </div>
+      <div class="btns_group">
+        <button class="btn btn_add">Add</button>
+        <button type="button" form="form" class="btn btn_save">Save</button>
+      </div>
+      <div id="plans">
+        <form action="" class="form hidden" id="form">
+          <div class="title_group">
+            <div class="plan_title_label">Plan title</div>
+            <input
+              class="plan_title_input"
+              name="plan-title"
+              type="text"
+              id="plan-title"
+              placeholder="Title X"
+            />
+          </div>
+        </form>
+
+        <!-- <div class="flight_plan">
+        Plan 1
+      </div> -->
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <div id="map"></div>
+    </main>
+  </body>
+</html>

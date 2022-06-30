@@ -1,0 +1,151 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  display: flex;
+  width: 20rem;
+  padding: 2rem 1rem;
+  background-color: #577590;
+  color: white;
+  flex-direction: column;
+}
+
+.title_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2em;
+  font-size: 16px;
+}
+
+.logo {
+  height: 3em;
+  background-color: white;
+  border-radius: 2em;
+  margin-right: 1em;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.main {
+  width: 100%;
+}
+
+.btns_group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 1em;
+  margin-bottom: 1em;
+}
+
+.btn {
+  padding: 1em 1.5em;
+  /* border: 3px solid black; */
+  border: none;
+  border-radius: 1em;
+  box-shadow: 3px 3px black;
+  font-weight: bold;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn_add {
+  background-color: #43aa8b;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1, 136, 46, 0.5) 0 -1px 3px 0 inset,
+    rgba(0, 44, 97, 0.1) 0 3px 6px 0;
+}
+
+.btn_add:hover {
+  background: #3c977c;
+}
+
+.btn_save {
+  background-color: #f9c74f;
+  border-radius: 4px;
+  border: 0;
+  box-shadow: rgba(1, 136, 46, 0.5) 0 -1px 3px 0 inset,
+    rgba(0, 44, 97, 0.1) 0 3px 6px 0;
+}
+
+.btn_save:hover {
+  background-color: #e2b447;
+}
+
+.form {
+  background-color: #22333b;
+  padding: 1em 1em;
+  border-radius: 10px;
+  transition: all 0.5s, transform 1ms;
+}
+
+.plan_title_input:focus {
+  outline: none;
+  background-color: whitesmoke;
+}
+
+.title_group {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5em;
+}
+
+
+.plan_title_label {
+  margin-bottom: 0.5em;
+}
+
+.plan_title_input {
+  padding: 0.5em;
+  border-radius: 5px;
+  height: 30px;
+  outline-width: 1px;
+  outline-color: #22333b;
+}
+
+.hidden {
+  transition: all 0.1s;
+  opacity: 0;
+  overflow: hidden;
+    height: 0;
+  padding: 0;
+}
+
+.flight_plan{
+  background-color: #512d38;
+  padding: 1em 2em;
+  font-size: 20px;
+  border-radius: 5px;
+  margin-top: 0.5em;
+}
+
+.flight_plan:hover{
+  background-color: #613240;
+}
+
+.flight_plan:active{
+  background-color: #632b3c;
+}
+
+
+#map {
+  flex: 1;
+  height: 100%;
+  width: auto;
+  background-color: black;
+  cursor: pointer;
+}
