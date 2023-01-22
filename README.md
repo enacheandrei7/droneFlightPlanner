@@ -1,2 +1,2 @@
 # droneFlightPlanner
-Drone Flight Planner assignment for Pix4D interview
+Drone Flight Planner made using HTML, CSS, JavaScript and Leaflet API for maps.
